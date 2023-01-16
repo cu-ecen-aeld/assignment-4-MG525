@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Quick start-stop-daemon example, derived from Debian /etc/init.d/ssh
+set -e
+
+# Must be a valid filename
+export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
+
+case "$1" in
+  start)
+        echo -n "Loading ldd modules"
+	      scull_load
+        module_load hello
+        module_load faulty
+	;;
+  stop)
+        echo -n "Unoading ldd modules"$NAME
+	      scull_unload
+        module_unload hello
+        module_unload faulty
+	;;
+
+  *)
+	echo "Usage: "$1" {start|stop}"
+	exit 1
+esac
+
+exit 0
